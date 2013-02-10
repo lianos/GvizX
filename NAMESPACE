@@ -1,0 +1,38 @@
+import(methods)
+import(data.table)
+import(Gviz)
+import(GenomicRanges)
+import(rtracklayer)
+import(Rsamtools)
+
+importMethodsFrom(Biobase, rowMedians, annotation)
+
+exportClasses(
+  Cached,
+  BamTrack,
+  BigWigTrack,
+  TxDbTrack
+)
+
+exportMethods(
+  "rangeStrict",
+  "rangeStrict<-",
+  "start",
+  "seqnames",
+  "chromosome",
+  "annotation"
+)
+
+export(
+  BamTrack,
+  bamFile,
+
+  TxDbTrack,
+  buildCachedTxDb,
+
+  BigWigTrack,
+  bigWigFile,
+
+
+  Rle2DataBits
+)
