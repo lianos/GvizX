@@ -80,7 +80,7 @@ setReplaceMethod("chromosome", "BamTrack", function(GdObject, value) {
 })
 
 ## Gviz-methods
-setMethod("subset", c(x="BamTrack"), function(x, from=NULL, to=NULL, sort=FALSE, ...) {
+setMethod("subset", c(x="BamTrack"), function(x, from=NULL, to=NULL, sort=FALSE, stacks=FALSE, ...) {
   ## Assuming you came here from plotTracks where the chromosome would have
   ## been set in the consolidateTrack method
   ## cat("subset,BamTrack :: from", from, "to", to, "\n")
@@ -94,7 +94,7 @@ setMethod("subset", c(x="BamTrack"), function(x, from=NULL, to=NULL, sort=FALSE,
   } else {
     chr <- if (is.character(args$chromosome)) args$chromosome else chromosome(x)
   }
-  invalid <- !chr %in% names(seqlengths(si))
+  invalid <- !chr %in% seqlevels(si)
   if (invalid) {
     x@range <- GRanges()
   } else {
@@ -122,12 +122,12 @@ setMethod("subset", c(x="BamTrack"), function(x, from=NULL, to=NULL, sort=FALSE,
     x@range <- gr
   }
 
-  if (length(x@range))
-      x <- setCoverage(x)
-
+  if (length(x@range)) {
+      x <- Gviz:::setCoverage(x)
+  }
   is.strict <- rangeStrict(x)
   if (!rangeStrict(x)) rangeStrict(x) <- TRUE
-  x <- callNextMethod(x, from=from, to=to, sort=sort, ...)
+  x <- callNextMethod(x, from=from, to=to, sort=sort, stacks=stacks)
   if (!is.strict) rangeStrict(x) <- FALSE
 
   return(x)

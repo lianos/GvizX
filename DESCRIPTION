@@ -3,12 +3,14 @@ Version: 0.0.1
 Title: Experimental extensions to Gviz
 Author: Steve Lianoglou
 Maintainer: Steve Lianoglou <slianoglou@novartis.com>
-Depends:  R (>= 2.10.0), methods, grid, Gviz (>= 1.2.1), data.table (>= 1.8.7)
+Depends:  R (>= 2.10.0), methods, grid, Gviz (>= 1.2.1), data.table (>= 1.8.7),
+  GenomicRanges
 Imports: Gviz, data.table, Rsamtools, rtracklayer, GenomicRanges, Biobase
 Suggests: xtable, GenomicFeatures
 biocViews: Visualization, Microarray
 Description: Extending Gviz with some NGS stuff while Florian hacks on his
-  file reference I/O abstraction magic.
+  file reference I/O abstraction magic. This code used to be in a forked Gviz
+  package, but I'm trying to make it work with base Gviz as a add-on.
 License: Artistic-2.0
 LazyLoad: yes
 

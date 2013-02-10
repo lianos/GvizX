@@ -54,7 +54,7 @@ TxDbTrack <- function(x, chromosome=NULL, start=NULL, end=NULL,
     end <- if(!length(x)) NULL else max(IRanges::end(x))
   }
 
-  genome <- if (missing(genome)) .getGenomeFromGRange(x, "NA") else genome
+  genome <- if (missing(genome)) Gviz:::.getGenomeFromGRange(x, "NA") else genome
 
   range <- subsetByOverlaps(x, GRanges(chromosome, IRanges(start, end)))
 
