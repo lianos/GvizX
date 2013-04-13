@@ -34,6 +34,10 @@ bcells <- btrax$bcells
 # IL6
 bcells <- subset(bcells, 22771021, 22771848, chromosome='chr7')
 
-plotPeaks("chr17", 8062012, 8064598, btrax[1:3], gene.track, same.y=FALSE)
+library(BSgenome.Hsapiens.UCSC.hg19)
+hs.track <- SequenceTrack(Hsapiens)
+
+strack <- SequenceTrack(Hsapiens)
+plotPeaks("chr17", 8062012, 8064598, btrax[1:3], gene.track, same.y=FALSE, show.seq=TRUE, complement=TRUE)
 plotPeaks("chr3",  169710731, 169716238, btrax, gene.track, same.y=FALSE)
 plotPeaks("chr11", 62505657,  62507801, btrax, gene.track, same.y=FALSE)#TTC9C
