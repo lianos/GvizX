@@ -115,7 +115,13 @@ setMethod("subset", c(x="BamTrack"), function(x, from=NULL, to=NULL, sort=FALSE,
       meta[[wut]] <- NULL
     }
     values(gr) <- meta
-    filter.fn <- x@cache$filter.fn
+
+    if (is.function(args$filter.fn)) {
+      filter.fn <- args$filter.fn
+    } else {
+      filter.fn <- x@cache$filter.fn
+    }
+
     if (length(gr) && is.function(filter.fn)) {
       gr <- filter.fn(gr)
     }
